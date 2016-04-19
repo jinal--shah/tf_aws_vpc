@@ -12,7 +12,7 @@ variable "enable_dns_support" {
   default = false
 }
 
-variable "vpc_tags" {
+variable "common_tags" {
     type    = "map"
     default = {
         Name        = "jin_prod-notifications-0.0.1"
