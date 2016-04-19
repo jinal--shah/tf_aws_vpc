@@ -2,7 +2,12 @@ resource "aws_vpc" "mod" {
   cidr_block = "${var.cidr}"
   enable_dns_hostnames = "${var.enable_dns_hostnames}"
   enable_dns_support = "${var.enable_dns_support}"
-  tags { Name = "${var.name}" }
+  tags = {
+    Name        = "${lookup(var.vpc_tags, "Name")}"
+    Environment = "${lookup(var.vpc_tags, "Environment")}"
+    Service     = "${lookup(var.vpc_tags, "Service")}"
+    Build       = "${lookup(var.vpc_tags, "Build")}"
+  }
 }
 
 resource "aws_internet_gateway" "mod" {
