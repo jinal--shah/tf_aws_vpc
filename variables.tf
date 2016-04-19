@@ -1,23 +1,32 @@
-variable "name" { }
-variable "cidr" { }
-variable "public_subnets" { default = "" }
-variable "private_subnets" { default = "" }
-variable "azs" { }
-variable "enable_dns_hostnames" {
-  description = "should be true if you want to use private DNS within the VPC"
-  default = false
-}
-variable "enable_dns_support" {
-  description = "should be true if you want to use private DNS within the VPC"
-  default = false
+# vim: et sw=4 ts-4 sr smartindent:
+variable "aws_tags_name"       { type = "string" }
+variable "aws_tags_env"        { type = "string" }
+variable "aws_tags_service"    { type = "string" }
+variable "aws_tags_build_num"  { type = "string" }
+
+variable "azs"  { type = "string" }
+variable "cidr" { type = "string" }
+variable "name" { type = "string" }
+
+variable "public_subnets" {
+    type    = "string"
+    default = ""
 }
 
-variable "common_tags" {
-    type    = "map"
-    default = {
-        Name        = "jin_prod-notifications-0.0.1"
-        Environment = "prod"
-        Service     = "notifications"
-        Build       = "0.0.1"
-    }
+variable "private_subnets" {
+    type    = "string"
+    default = ""
 }
+
+variable "enable_dns_hostnames" {
+    type        = "string"
+    description = "should be true if you want to use private DNS within the VPC"
+    default     = false
+}
+
+variable "enable_dns_support" {
+    type        = "string"
+    description = "should be true if you want to use private DNS within the VPC"
+    default     = false
+}
+
